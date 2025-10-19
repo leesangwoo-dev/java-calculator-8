@@ -9,6 +9,12 @@ public class Application {
 
         // [입력] Console.readLine()을 사용하여 입력 받기
         String input = Console.readLine();
-        System.out.println(input);
+
+        int temp = 10;
+        // [처리] 입력 문자열이 공백("")인 경우 0을 반환한다.
+        if (input == null || input.isEmpty()) {
+            temp =  0;
+        }
+        System.out.println(temp);
     }
 }
