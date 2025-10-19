@@ -13,19 +13,13 @@ public class Application {
         // [입력] Console.readLine()을 사용하여 입력 받기
         String input = Console.readLine();
 
-        try { // 예외 처리를 위한 try 블록 추가
-            int result = add(input);
+        int result = add(input);
 
-            // [출력] 계산 결과를 "결과 : {합계}" 형식으로 출력
-            System.out.println("결과 : " + result);
+        // [출력] 계산 결과를 "결과 : {합계}" 형식으로 출력
+        System.out.println("결과 : " + result);
 
-        } catch (IllegalArgumentException e) {
-            // [예외 처리] 발생 시 에러 메시지를 표준 에러 스트림에 출력
-            System.err.println("[에러] " + e.getMessage());
-        } finally {
-            // Console.close()를 닫히도록 처리
-            Console.close();
-        }
+        // Console.close()를 닫히도록 처리
+        Console.close();
     }
 
     private static int add(String text) {
