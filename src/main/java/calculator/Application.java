@@ -14,6 +14,7 @@ public class Application {
         String input = Console.readLine();
 
         int result = add(input);
+        System.out.println(result);
 
     }
 
@@ -39,10 +40,34 @@ public class Application {
             numbers = text.split(",|:");
         }
 
-        for (String number : numbers) {
-            System.out.println(number);
-        }
+        // [덧셈] 및 [예외 처리]를 통합한 sum 메소드 호출
+        return sum(numbers);
+    }
 
-        return 0;
+    private static int sum(String[] numbers) {
+        int total = 0;
+        for (String s : numbers) {
+            // 빈 문자열이 남아있을 경우 무시
+            if (s.isEmpty()) {
+                continue;
+            }
+
+            // 숫자로 변환하고 양수인지 검증
+            int number = toPositiveNumber(s);
+            total += number;
+        }
+        return total;
+    }
+
+    private static int toPositiveNumber(String s) {
+        int number;
+        // 공백을 제거하고 숫자로 변환 시도
+        number = Integer.parseInt(s.trim());
+
+        // 음수 검증
+        if (number < 0) {
+            throw new IllegalArgumentException("음수는 입력할 수 없습니다: " + number);
+        }
+        return number;
     }
 }
