@@ -10,11 +10,22 @@ public class Application {
         // [입력] Console.readLine()을 사용하여 입력 받기
         String input = Console.readLine();
 
-        int temp = 10;
+        int result = add(input);
+
+    }
+
+    private static int add(String text) {
         // [처리] 입력 문자열이 공백("")인 경우 0을 반환한다.
-        if (input == null || input.isEmpty()) {
-            temp =  0;
+        if (text == null || text.isEmpty()) {
+            return 0;
         }
-        System.out.println(temp);
+
+        // [분리] 쉼표(,) 또는 콜론(:)을 사용하여 문자열을 분리
+        String[] numbers = text.split(",|:");
+        for (String number : numbers) {
+            System.out.println(number);
+        }
+
+        return 0;
     }
 }
