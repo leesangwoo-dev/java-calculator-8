@@ -14,8 +14,9 @@ public class Application {
         String input = Console.readLine();
 
         int result = add(input);
-        System.out.println(result);
 
+        // [출력] 계산 결과를 "결과 : {합계}" 형식으로 출력
+        System.out.println("결과 : " + result);
     }
 
     private static int add(String text) {
