@@ -13,10 +13,19 @@ public class Application {
         // [입력] Console.readLine()을 사용하여 입력 받기
         String input = Console.readLine();
 
-        int result = add(input);
+        try { // 예외 처리를 위한 try 블록 추가
+            int result = add(input);
 
-        // [출력] 계산 결과를 "결과 : {합계}" 형식으로 출력
-        System.out.println("결과 : " + result);
+            // [출력] 계산 결과를 "결과 : {합계}" 형식으로 출력
+            System.out.println("결과 : " + result);
+
+        } catch (IllegalArgumentException e) {
+            // [예외 처리] 발생 시 에러 메시지를 표준 에러 스트림에 출력
+            System.err.println("[에러] " + e.getMessage());
+        } finally {
+            // Console.close()를 닫히도록 처리
+            Console.close();
+        }
     }
 
     private static int add(String text) {
@@ -62,8 +71,13 @@ public class Application {
 
     private static int toPositiveNumber(String s) {
         int number;
-        // 공백을 제거하고 숫자로 변환 시도
-        number = Integer.parseInt(s.trim());
+        try{
+            // 공백을 제거하고 숫자로 변환 시도
+            number = Integer.parseInt(s.trim());
+        } catch (NumberFormatException e) { // NumberFormatException 처리 블록 추가
+            // 숫자가 아닌 값이 입력된 경우
+            throw new IllegalArgumentException("숫자가 아닌 값이 입력되었습니다: " + s);
+        }
 
         // 음수 검증
         if (number < 0) {
